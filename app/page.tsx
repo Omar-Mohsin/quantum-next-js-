@@ -1,57 +1,65 @@
 'use client';
-import Cookies from 'js-cookie';
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import DeleteIcon from "@mui/icons-material/Delete";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
-export default function Home() {
-  const [myCampaign, setMyCampaign] = useState();
-  const [showAllCampaigns, setShowAllCampaigns] = useState(false);
-const user = Cookies.get('user')
-const userDetails = Cookies.get("userDetails")
-  console.log(userDetails)
-  console.log(user)
+import { useSelector , useDispatch } from "react-redux";
+import { SelectUser } from "@/redux/auth/authSlice";
+import { SelectUserDetails } from '@/redux/auth/authSlice';
+import { addUserDetails } from '@/redux/auth/authSlice';
+import {Campaign} from '@/types/types'; 
 
-  
+function Home() {
+  const [myCampaign, setMyCampaign] = useState<Campaign[] | undefined>(undefined);
+  const [showAllCampaigns, setShowAllCampaigns] = useState(false);
+
+  const user = useSelector(SelectUser);
+  const userDetails = useSelector(SelectUserDetails);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .get(`http://localhost:80/api/v1/users/me`, {
         headers: {
-          Authorization: `Bearer ${user}`,
+          Authorization: `Bearer ${user?.access_token}`,
         },
       })
       .then((response) => {
         console.log(response.data);
-        Cookies.set("userDetails", response.data);
+        dispatch(addUserDetails(response.data));
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, [user, dispatch]);
 
-      })
-      .catch((error) => {
-        console.log(error.response.data); 
-      });
-  }, []);
-  
   useEffect(() => {
-    axios
-      .get(`http://localhost:80/api/v1/campaign/byid/1`, {
-        headers: {
-          Authorization: `Bearer ${user}`,
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        setMyCampaign(res?.data);
-        console.log(res?.data);
-      })
-      .catch((error) => {
-        console.log(error?.response.data);
-      });
-  }, [user]);
+    if (userDetails) {
+      axios
+        .get(`http://localhost:80/api/v1/campaign/byid/${userDetails.id}`, {
+          headers: {
+            Authorization: `Bearer ${user?.access_token}`,
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          setMyCampaign(res?.data);
+          console.log(res?.data);
+        })
+        .catch((error) => {
+          console.log(error?.response.data);
+        });
+    }
+  }, [user, userDetails]);
+
   const filteredCampaign = showAllCampaigns
-  ? myCampaign
-  : myCampaign?.slice(0, 2);
-  console.log(myCampaign)
+    ? myCampaign
+    : myCampaign?.slice(0, 2);
+
+  console.log(myCampaign);
+
 
 
   return (
@@ -151,3 +159,4 @@ const userDetails = Cookies.get("userDetails")
     </div>
   )
 }
+export default React.memo(Home);

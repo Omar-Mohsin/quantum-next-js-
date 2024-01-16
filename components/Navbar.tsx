@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { getCookie } from "cookies-next";
 import LogoMenu from "./LogoMenu";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { SelectUser } from "@/redux/auth/authSlice";
 function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-   const user = getCookie("user");
+  const user = useSelector(SelectUser);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
