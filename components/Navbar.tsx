@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from "react";
-import { getCookie } from "cookies-next";
 import LogoMenu from "./LogoMenu";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -32,7 +31,7 @@ function Navbar() {
               <button className="hidden md:block">
                 <Link
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 md:mb-0 md:w-40 md:mr-6"
-                  href="#"
+                  href="workspace-settings"
                 >
                   WorkSpace settings
                 </Link>
