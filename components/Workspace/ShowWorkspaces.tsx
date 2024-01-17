@@ -13,58 +13,52 @@ function ShowWorkspaces({ workspaces }: any) {
       >
         Workspace Settings
       </div>
-        <div className="flex w-full justify-between items-center bg-white p-4 mt-8 justify-center ">
-          <div className="hidden md:flex md:w-1/4">
-            <div className="text-gray-500">Name</div>
-          </div>
-          <div className="hidden md:flex md:w-1/4 justify-center">
-            <div className="text-gray-500">Created At</div>
-          </div>
-          <div className="hidden md:flex md:w-1/4 justify-center">
-            <div className="text-gray-500">Created By</div>
-          </div>
-          <div className="hidden md:flex md:w-1/4 justify-center">
-            <div className="text-gray-500">Owner</div>
-          </div>
-      </div>
-      <div className="flex-col mt-8 px-10 w-full">
-        {workspaces.map((workspace: any) => (
-          <div
-            className="flex w-full justify-between items-center bg-white p-4"
-            key={workspace.id}
-          >
-            <div className="hidden md:flex md:w-1/4 justify-center">
-              {workspace.name}
-            </div>
-            <div className="hidden md:flex md:w-1/4 justify-center">
-              {workspace.created_at}
-            </div>
-            <div className="hidden md:flex md:w-1/4 justify-center">
-              {workspace.created_by}
-            </div>
-            <div className="hidden md:flex md:w-1/4 justify-center">
-              {workspace.owner}
-            </div>
-            <div className="mr-6">
-              <button
-                onClick={() => transferOwnership(workspace.id)}
-                className="bg-green-500 hover:bg-green-700 text-white px-2 py-2 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 md:w-40"
-                style={{ whiteSpace: "nowrap" }}
-              >
-                Transfer Ownership
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => deleteWorkspace(workspace.id)}
-                className="bg-red-500 hover:bg-red-700 text-white px-2 py-2 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 md:w-40"
-              >
-                Delete Workspace
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <table className="w-full mt-8 border border-gray-300">
+        <thead className="bg-gray-100 w-full">
+          <tr>
+            <th className="p-4 md:w-1/4 text-gray-700">Name</th>
+            <th className="p-4 md:w-1/4 text-gray-700">Created At</th>
+            <th className="p-4 md:w-1/4 text-gray-700">Created By</th>
+            <th className="p-4 md:w-1/4 text-gray-700">Owner</th>
+            <th className="p-4"></th>
+            <th className=""></th>
+          </tr>
+        </thead>
+        <tbody>
+          {workspaces.map((workspace: any) => (
+            <tr
+              key={workspace.id}
+              className="border-b border-gray-300 hover:bg-gray-50 transition"
+            >
+              <td className="p-4 text-center ">{workspace.name}</td>
+              <td className="p-4  text-center">{workspace.created_at}</td>
+              <td className="p-4 text-center">{workspace.created_by}</td>
+              <td className="p-4 text-center  ">{workspace.owner}</td>
+              <td className="p-4">
+                <button
+                  onClick={() => transferOwnership(workspace.id)}
+                  className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  style={{ whiteSpace: "nowrap" }}
+
+                >
+                  Transfer Ownership
+                </button>
+              </td>
+              <td className="p-4">
+                <button
+                  onClick={() => deleteWorkspace(workspace.id)}
+                  className="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  style={{ whiteSpace: "nowrap" }}
+
+                >
+                  Delete Workspace
+                </button>
+              </td>
+              <td className="p-4"> </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

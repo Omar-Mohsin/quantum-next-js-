@@ -21,21 +21,21 @@ function page() {
     name  : 'boxer workspace' , 
     created_at : '2021-10-10' ,
     created_by : 'boxer' ,
-    Owner : 'boxer' ,
+    owner : 'boxer' ,
     }, 
     {
       id : 2, 
       name  : 'omar workspace' , 
       created_at : '2021-10-10' ,
       created_by : 'omar' ,
-      Owner : 'omar' ,
+      owner : 'omar' ,
     }, 
     {
       id : 2, 
       name  : 'empty workspace' , 
       created_at : '2021-10-10' ,
       created_by : 'empty' ,
-      Owner : 'empty' ,
+      owner : 'empty' ,
     }
 
 

@@ -1,8 +1,8 @@
-import React from 'react'
+// Checkbox.js
+import React from 'react';
 
-function Checkbox({toggleCheckboxChange, label, isChecked}: any) {
+function Checkbox({ isChecked, toggleCheckboxChange, label }: any) {
   return (
-
     <div className="flex items-center">
       <input
         type="checkbox"
@@ -14,8 +14,7 @@ function Checkbox({toggleCheckboxChange, label, isChecked}: any) {
         {label}
       </label>
     </div>
-
-    )
+  );
 }
 
-export default Checkbox
+export default Checkbox;
