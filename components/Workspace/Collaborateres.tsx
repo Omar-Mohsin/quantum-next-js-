@@ -52,7 +52,7 @@ function Collaborators({ collab }: any) {
           </thead>
           <tbody>
             {collab.map((collaborator: any) => (
-             <CollaboratersSection collaborator={collaborator} onChange={handlePermissionChange} />
+             <CollaboratersSection collaborator={collaborator} onChange={onChange} />
             ))}
           </tbody>
         </table>
