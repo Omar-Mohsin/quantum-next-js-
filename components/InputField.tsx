@@ -1,8 +1,8 @@
 import React from "react";
 
-function InputField({ label, name, type, onChange, placeholder }  :any) {
+function InputField({ label, name, type, onChange, placeholder , value }  :any) {
   return (
-    <div className="mb-4">
+    <div className="mb-4 ">
       <label htmlFor={name} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
@@ -10,6 +10,7 @@ function InputField({ label, name, type, onChange, placeholder }  :any) {
         className="mt-1 p-2 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
       />

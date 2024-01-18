@@ -4,8 +4,9 @@ import axios from 'axios'
 import ShowWorkspaces from '@/components/Workspace/ShowWorkspaces'
 import Collaborateres from '@/components/Workspace/Collaborateres'
 
+function page({params}  :any) {
 
-function page() {
+  console.log(params.id)
 /*
   useEffect(() => {
     axios.get('#').then((res) => {
@@ -23,20 +24,7 @@ function page() {
     created_by : 'boxer' ,
     owner : 'boxer' ,
     }, 
-    {
-      id : 2, 
-      name  : 'omar workspace' , 
-      created_at : '2021-10-10' ,
-      created_by : 'omar' ,
-      owner : 'omar' ,
-    }, 
-    {
-      id : 2, 
-      name  : 'empty workspace' , 
-      created_at : '2021-10-10' ,
-      created_by : 'empty' ,
-      owner : 'empty' ,
-    }
+  
 
 
   ]
@@ -51,10 +39,15 @@ function page() {
       id : 2 , 
       name : 'omar' , 
       status : 'accepted'
-     }
+     },
+     {
+      id : 3 , 
+      name : 'omar' , 
+      status : 'accepted'
+     },
   ]
   return (
-    <div>
+    <div className='mt-7'>
       
         <ShowWorkspaces workspaces={data} />
         <Collaborateres collab={collabData} />
