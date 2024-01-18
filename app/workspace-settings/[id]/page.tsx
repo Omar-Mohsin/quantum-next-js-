@@ -46,6 +46,9 @@ function page({params}  :any) {
       status : 'accepted'
      },
   ]
+  const handleCollaboratorChange = (e : any) => {
+    
+  }
   return (
     <div className='mt-7'>
       
