@@ -1,4 +1,3 @@
-// Checkbox.js
 import React from 'react';
 
 function Checkbox({ isChecked,name , onChange, label }: any) {

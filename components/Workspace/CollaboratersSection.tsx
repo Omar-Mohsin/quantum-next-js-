@@ -13,16 +13,17 @@ function CollaboratersSection({collaborator , onChange} : any) {
     <td className="p-4 text-center w-3/4 md:w-1/4 lg:w-1/5">
       <div className="flex justify-center">
         <div className="flex w-1/4 md:w-1/5 lg:w-1/5 justify-center">
-          <Checkbox label="can view "onChange={onChange} name ={"can_view"} />
+          <Checkbox label="can view "onChange={() => onChange('can_view')} name ={"can_view"} />
         </div>
         <div className="flex w-1/4 md:w-1/5 lg:w-1/5 justify-center">
-          <Checkbox label="can edit"  onChange={onChange} name ={'can_edit'}/>
+          <Checkbox label="can edit"  onChange={() => onChange('can_edit')} name ={'can_edit'}/>
         </div>
         <div className="flex w-1/4 md:w-1/5 lg:w-1/5 justify-center">
-          <Checkbox label="can delete" name  = {"can_delete"}onChange={onChange} />
+          <Checkbox label="can delete" name  = {"can_delete"}onChange={() => onChange('can_delete')} />
         </div>
         <div className="flex w-1/4 md:w-1/5 lg:w-1/5 justify-center">
-          <Checkbox label="can invite" name ={'can_invite'} onChange={onChange}  />
+          <Checkbox label="can invite" name ={'can_invite'}              onChange={() => onChange('can_invite')}
+  />
         </div>
       </div>
     </td>

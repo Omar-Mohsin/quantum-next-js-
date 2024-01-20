@@ -1,7 +1,5 @@
-// Collaborators.js
 "use client";
 import React, { useState } from "react";
-import Checkbox from "@/components/Checkbox";
 import CollaboratersSection from "./CollaboratersSection";
 import "reactjs-popup/dist/index.css";
 import PopupInvite from "./PopupInvite";
@@ -19,17 +17,25 @@ function Collaborators({ collab }: any) {
     }))
   );
 
-  const handlePermissionChange = (collaboratorId: string, permission: string, value: boolean) => {
-    setCollaboratorsData((prevData : any) => {
-      const updatedCollaborators = prevData.map((collaborator : any) =>
+  const handlePermissionChange = (
+    collaboratorId: string,
+    permission: string
+  ) => {
+    setCollaboratorsData((prevData: any) =>
+      prevData.map((collaborator: any) =>
         collaborator.id === collaboratorId
-          ? { ...collaborator, permissions: { ...collaborator.permissions, [permission]: value } }
+          ? {
+              ...collaborator,
+              permissions: {
+                ...collaborator.permissions,
+                [permission]: !collaborator.permissions[permission],
+              },
+            }
           : collaborator
-      );
-      return updatedCollaborators;
-    });
+      )
+    );
   };
-  console.log(collaboratorsData)
+  console.log(collaboratorsData);
 
   return (
     <div className="mt-10 mb-10">
@@ -52,13 +58,18 @@ function Collaborators({ collab }: any) {
           </thead>
           <tbody>
             {collab.map((collaborator: any) => (
-             <CollaboratersSection collaborator={collaborator} onChange={onChange} />
+              <CollaboratersSection
+                collaborator={collaborator}
+                onChange={(permission: any) =>
+                  handlePermissionChange(collaborator.id, permission)
+                }
+              />
             ))}
           </tbody>
         </table>
         <div className="flex justify-center mt-10">
-          <PopupInvite/>
-          </div>
+          <PopupInvite />
+        </div>
       </div>
     </div>
   );
