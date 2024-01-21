@@ -16,11 +16,7 @@ function Collaborators({ collab }: any) {
       },
     }))
   );
-
-  const handlePermissionChange = (
-    collaboratorId: string,
-    permission: string
-  ) => {
+  const handlePermissionChange = (collaboratorId: string, permission: string) => {
     setCollaboratorsData((prevData: any) =>
       prevData.map((collaborator: any) =>
         collaborator.id === collaboratorId
@@ -35,6 +31,7 @@ function Collaborators({ collab }: any) {
       )
     );
   };
+  
   console.log(collaboratorsData);
 
   return (
@@ -59,6 +56,7 @@ function Collaborators({ collab }: any) {
           <tbody>
             {collab.map((collaborator: any) => (
               <CollaboratersSection
+              key={collaborator.id}
                 collaborator={collaborator}
                 onChange={(permission: any) =>
                   handlePermissionChange(collaborator.id, permission)

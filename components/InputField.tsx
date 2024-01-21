@@ -1,6 +1,6 @@
 import React from "react";
 
-function InputField({ label, name, type, onChange, placeholder , value }  :any) {
+function InputField({ label, name, type, onChange, placeholder , value , disabled }  :any) {
   return (
     <div className="mb-4 ">
       <label htmlFor={name} className="block text-sm font-medium text-gray-700">
@@ -13,6 +13,7 @@ function InputField({ label, name, type, onChange, placeholder , value }  :any) 
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        disabled={disabled}
       />
     </div>
   );
