@@ -1,13 +1,15 @@
-'use client'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { SelectUserDetails, SelectUser } from '@/redux/auth/authSlice'
-import { useState } from 'react'
-import axios from 'axios'
-import InputField from '@/components/InputField'
-import Link from 'next/link'
-function page() {
+"use client";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { SelectUserDetails, SelectUser } from "@/redux/auth/authSlice";
 
+import { addUserDetails } from "@/redux/auth/authSlice";
+import { useState } from "react";
+import axios from "axios";
+import InputField from "@/components/InputField";
+import Link from "next/link";
+function page() {
+  const dispatch = useDispatch();
   const userDetails = useSelector(SelectUserDetails);
   const user = useSelector(SelectUser);
   const [data, setData] = useState({
@@ -18,7 +20,7 @@ function page() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const onChangeprofile = (event : any) => {
+  const onChangeprofile = (event: any) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
 
@@ -36,9 +38,11 @@ function page() {
         }
       );
 
+      dispatch(addUserDetails(response.data));
       console.log(response.data);
+
       setMessage("Profile updated successfully");
-    } catch (error : any) {
+    } catch (error: any) {
       if (error.response) {
         console.error(error.response.data);
         setError(error.response.data);
@@ -52,7 +56,9 @@ function page() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       {user ? (
         <div className="bg-white p-4 md:p-8 rounded-lg shadow-md md:w-2/3 lg:w-1/2 xl:w-1/3">
-          <h1 className="text-xl md:text-4xl mb-4 text-blue-600">Edit Profile</h1>
+          <h1 className="text-xl md:text-4xl mb-4 text-blue-600">
+            Edit Profile
+          </h1>
 
           <InputField
             label="Change Full Name"
@@ -92,7 +98,7 @@ function page() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

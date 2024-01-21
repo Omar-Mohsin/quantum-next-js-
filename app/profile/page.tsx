@@ -4,13 +4,14 @@ import Link from 'next/link'
 import UserInformation from './UserInformation'
 import { SelectUser  , removeUser} from '@/redux/auth/authSlice'
 import { useSelector , useDispatch } from 'react-redux'
-
+import { useRouter } from 'next/navigation'
 function page() {
     const user = useSelector(SelectUser)
+    const router = useRouter()
     const dispatch = useDispatch()
     const logoutHandler = () => {
         dispatch(removeUser(null));
-        window.location.href = "/login";
+        router.replace("/login");
     }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
