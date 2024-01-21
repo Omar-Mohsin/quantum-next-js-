@@ -20,11 +20,11 @@ export const authSlice = createSlice({
 });
 
 export const SelectUser = (state) => {
-  return state.auth.user;
+  return state?.auth?.user;
 };
 
 export const SelectUserDetails = (state) => {
-  return state.auth.userDetails;
+  return state?.auth.userDetails;
 };
 
 export default authSlice.reducer;

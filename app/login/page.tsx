@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import InputField from "@/components/InputField";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from 'next/navigation'
+
 
 import { useSelector , useDispatch } from "react-redux";
 import { SelectUser } from "@/redux/auth/authSlice";
@@ -14,7 +16,7 @@ function page() {
   const [error, setError] = useState({});
 
 const user  = useSelector(SelectUser);
-
+  const router = useRouter();
   const onChangeUsername = (event  :any) => {
     setUsername(event.target.value);
   };
@@ -44,7 +46,8 @@ const user  = useSelector(SelectUser);
 
           dispatch(addUser(response.data))
 
-          window.location.href = "/";
+          console.log(user);
+          router.replace("/profile");
            
         } catch (error : any) {
       if (error.response && error.response.status === 400) {
@@ -58,7 +61,7 @@ const user  = useSelector(SelectUser);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
-    {!user ? (
+  
       <div className="bg-white p-4 md:p-8 rounded-lg shadow-md md:w-1/2 lg:w-1/3 text-gray-500">
         <p className="text-red-500 mb-4">{error?.detail}</p>
 
@@ -98,14 +101,7 @@ const user  = useSelector(SelectUser);
           </Link>
         </div>
       </div>
-    ) : (
-      <div className="text-center text-black">
-        <p className="text-xl md:text-2xl">You are already logged in.</p>
-        <Link href="/profile" className="text-blue-600 mt-2 inline-block">
-          Go to Profile
-        </Link>
-      </div>
-    )}
+  
   </div>
   );
 }

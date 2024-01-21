@@ -2,7 +2,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SelectUserDetails, SelectUser } from "@/redux/auth/authSlice";
-
 import { addUserDetails } from "@/redux/auth/authSlice";
 import { useState } from "react";
 import axios from "axios";
