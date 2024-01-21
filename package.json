@@ -20,6 +20,7 @@
     "js-cookie": "^3.0.5",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "next-redux-wrapper": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^9.1.0",
@@ -27,6 +28,7 @@
     "reactjs-popup": "^2.0.6",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0",
     "socket.io-client": "^4.7.4",
     "styled-components": "^6.1.8",
     "websocket": "^1.0.34"
