@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import CampaignSection from "@/components/Home/CampaignSection";
 import WorkspaceSection from "@/components/Home/WorkspaceSection";
 import { useRouter } from "next/navigation";
+import { usePathname } from 'next/navigation';
 import {
   SelectUser,
   SelectUserDetails,
@@ -24,6 +24,9 @@ const api = axios.create({
 
 function Home() {
   const router = useRouter();
+  const path = usePathname();
+  console.log(path);
+  console.log(router);
   const [myCampaign, setMyCampaign] = useState<Campaign[] | undefined>(
     undefined
   );

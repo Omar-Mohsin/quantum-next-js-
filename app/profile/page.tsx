@@ -21,14 +21,14 @@ function page() {
           <UserInformation />
         </div>
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-            <Link href="rest-password">
+            <Link href="/profile/rest-password">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Reset Password
           </button>
             </Link>
-            <Link href="edit-profile">
+            <Link href="/profile/edit-profile">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
