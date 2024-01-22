@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import InputField from "@/components/InputField";
 import Checkbox from "@/components/Checkbox";
-
+import Actor from "@/components/Create-Campaign/Actor";
 import Post from "@/components/Create-Campaign/Post";
 import MultiplePosts from "@/components/Create-Campaign/MultiplePosts";
 import Author from "@/components/Create-Campaign/Author";
@@ -89,7 +89,18 @@ function page() {
                     checked={selectedType === "Author"}
                     onChange={handleRadioChange}
                   />
-                  Author / Profile Name
+                  Author
+                </label>
+                <label className="mb-2 text-blue-600 mr-4">
+                  <input
+                    type="radio"
+                    name="postType"
+                    className="mr-2"
+                    value="actor"
+                    checked={selectedType === "actor"}
+                    onChange={handleRadioChange}
+                  />
+                  actor
                 </label>
               </div>
             </div>
@@ -122,6 +133,7 @@ function page() {
       {selectedType === "Post" && <Post />}
       {selectedType === "Multiple Posts" && <MultiplePosts addDictionary= {addDictionary} />}
       {selectedType === "Author" && <Author />}
+      {selectedType === "actor" && <Actor />}
 
 
       </div>
