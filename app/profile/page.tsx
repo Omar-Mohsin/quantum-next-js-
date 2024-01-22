@@ -5,12 +5,14 @@ import UserInformation from './UserInformation'
 import { SelectUser  , removeUser} from '@/redux/auth/authSlice'
 import { useSelector , useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
+import { deleteCookie } from 'cookies-next';
 function page() {
     const user = useSelector(SelectUser)
     const router = useRouter()
     const dispatch = useDispatch()
     const logoutHandler = () => {
         dispatch(removeUser(null));
+        deleteCookie('token');
         router.replace("/login");
     }
   return (

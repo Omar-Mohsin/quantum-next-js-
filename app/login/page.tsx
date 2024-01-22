@@ -4,8 +4,7 @@ import InputField from "@/components/InputField";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from 'next/navigation'
-
-
+import { setCookie } from 'cookies-next';
 import { useSelector , useDispatch } from "react-redux";
 import { SelectUser } from "@/redux/auth/authSlice";
 import { addUser } from "@/redux/auth/authSlice";
@@ -45,7 +44,9 @@ const user  = useSelector(SelectUser);
      
 
           dispatch(addUser(response.data))
-
+          setCookie('token', response.data.access_token, {
+        
+          });
           console.log(user);
           router.replace("/profile");
            

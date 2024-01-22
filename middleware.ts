@@ -1,7 +1,5 @@
-// middleware.js
+
 import { NextRequest, NextResponse } from "next/server";
-import { store } from "./redux/store"; // Import your Redux store
-import { SelectUser } from "./redux/auth/authSlice";
 
 const protectedRoutes = [
   "/",
@@ -16,11 +14,9 @@ const protectedRoutes = [
 ];
 
 export default function middleware(req: NextRequest) {
-  // Access the Redux store state directly from the store
-  const user = SelectUser(store.getState());
-  console.log("middleware - user", user);
 
-  if (protectedRoutes.includes(req.nextUrl.pathname) && !user) {
+ const token = req.cookies.get('token')?.value.toString()
+  if (protectedRoutes.includes(req.nextUrl.pathname) && !token) {
     console.log("middleware - Redirecting to login");
     const loginUrl = new URL("/login", req.nextUrl.origin);
     return NextResponse.redirect(loginUrl.href);
