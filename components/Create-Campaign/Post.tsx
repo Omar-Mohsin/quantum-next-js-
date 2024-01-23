@@ -11,7 +11,7 @@ function Post() {
         
         <InputField
           type="text"
-          placeholder="Campaign Name"
+          placeholder=""
           className="w-full p-2 border border-gray-300 rounded-md"
         />
       </div>

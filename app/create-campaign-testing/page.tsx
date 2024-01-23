@@ -13,17 +13,15 @@ function page() {
 
   const [data, setData] = useState({
     campaign_name: "",
-    target: {
-      
-    },
+    target: {},
+    platforms: [],
     start_data: "",
     end_data: "",
   });
 
   const [disableEndDate, setDisableEndDate] = useState(false);
-  const [selectedType, setSelectedType] = useState(""); 
-  const addDictionary = () => {
-  }
+  const [selectedType, setSelectedType] = useState("Post"); 
+  const addDictionary = () => {}
   
   const onCheckboxChange = (e: any) => {
     setDisableEndDate(!disableEndDate);
@@ -33,9 +31,33 @@ function page() {
     setSelectedType(e.target.value);
   };
 
-  console.log(selectedType);
   const createCampaign = () => {};
 
+  const handlePlatformCheckboxChange = (event : any) => {
+    const { name, checked } = event.target;
+    setData((prevData : any) => {
+      let updatedPlatforms;
+      if (name === 'all') {
+        updatedPlatforms = checked ? ['Twitter', 'Facebook', 'Instagram'] : [];
+      } else {
+        updatedPlatforms = checked
+          ? [...prevData.platforms, name]
+          : prevData.platforms.filter((platform  :any) => platform !== name);
+      }
+
+      return {
+        ...prevData,
+        platforms: updatedPlatforms,
+      };
+    });
+  };
+  
+  const onChangeHandler = (e : any) => {
+    const {name, value} = e.target;
+    setData({...data, [name]: value})
+  }
+
+  console.log(data)
   return (
     <>
       <div className="p-6  h-full ">
@@ -46,9 +68,11 @@ function page() {
               type="text"
               placeholder="Campaign Name"
               className="w-full p-2 border border-gray-300 rounded-md"
+              name="campaign_name"
+              onChange ={onChangeHandler}
             />
           </div>
-          <div className="ml-24">
+          <div className="ml-52">
             <div className="text-lg text-gray-600">Dates</div>
           </div>
         </div>
@@ -105,7 +129,7 @@ function page() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col ml-24">
+          <div className="flex flex-col ml-52">
             <div className="flex">
               <InputField
                 type="datetime-local"
@@ -113,6 +137,7 @@ function page() {
                 label="from"
                 name="start_data"
                 className="mb-4 mr-2 w-full p-2 border border-gray-300 rounded-md"
+                onChange ={onChangeHandler}
               />
 
               <InputField
@@ -121,6 +146,7 @@ function page() {
                 label="to"
                 name="end_data"
                 disabled={disableEndDate}
+                onChange ={onChangeHandler}
               />
             </div>
             <div className="mt-4">
@@ -138,6 +164,19 @@ function page() {
 
       </div>
       <div className="w-full flex flex-col items-start ml-10 ">
+      <div className="flex flex-col mt-8 mb-10">
+        <h1 className="text-4xl font-bold mb-6">Platforms</h1>
+        <div className="mb-2">
+          <Checkbox label="All" name ="all" onChange={handlePlatformCheckboxChange} />
+        </div>
+        <div className="mb-2">
+          <Checkbox label="Twitter" name ="twitter"onChange={handlePlatformCheckboxChange}/>
+        </div>
+        <div className="mb-2">
+          <Checkbox label="FaceBook" name='facebook' onChange={handlePlatformCheckboxChange} />
+        </div> 
+        <Checkbox label="Instagram" name ='instagram' onChange={handlePlatformCheckboxChange} />
+      </div>
         <button
           className="bg-green-500 hover:bg-green-700 text-white mb-2 px-4 py-2 rounded transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500"
           onClick={createCampaign}

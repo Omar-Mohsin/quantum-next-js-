@@ -1,7 +1,8 @@
-import React from 'react'
+import React  from 'react'
 import InputField from '@/components/InputField';
 import Checkbox from '@/components/Checkbox';
 function Author() {
+  
   return (
     <div className="ml-20">
     <div className="flex items-center ">
@@ -10,7 +11,7 @@ function Author() {
       {/*make this a flex col*/}
       <InputField
         type="text"
-        placeholder="Campaign Name"
+        placeholder=""
         className="w-full p-2 border border-gray-300 rounded-md"
       />
     </div>

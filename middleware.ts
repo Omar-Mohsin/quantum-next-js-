@@ -11,6 +11,7 @@ const protectedRoutes = [
   "/workspace-settings/:id",
   "/campaign-settings",
   "/campaign-settings/:id",
+  "/oracle"
 ];
 
 export default function middleware(req: NextRequest) {
