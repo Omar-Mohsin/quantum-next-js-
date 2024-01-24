@@ -24,10 +24,16 @@ function page() {
       alert("Passwords do not match");
       return;
     }
+    const sendedData =  { 
+      full_name: data.full_name,
+      email: data.email,
+      password: data.password,
+    
+    }
     try {
       const response = await axios.post(
         "http://localhost:80/api/v1/users/open",
-        data,
+        sendedData,
         {
           headers: {
             "Content-Type": "application/json",

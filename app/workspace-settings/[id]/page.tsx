@@ -26,14 +26,38 @@ function page({ params }: any) {
       });
   }, []);
 
-  const collabData = {
-    name : "test",
-    email : ""
-  }
-  
+
+  const data = [
+    {
+      id: 1,
+      name: "boxer workspace",
+      created_at: "2021-10-10",
+      created_by: "boxer",
+      owner: "boxer",
+    },
+  ];
+
+  const collabData = [
+    {
+      id: 1,
+      name: "boxer",
+      status: "pending",
+    },
+    {
+      id: 2,
+      name: "omar",
+      status: "accepted",
+    },
+    {
+      id: 3,
+      name: "omar",
+      status: "accepted",
+    },
+  ];
+
   return (
     <div className="mt-7">
-      <ShowWorkspaces workspace={workspace} />
+      <ShowWorkspaces workspace={data} />
       <Collaborateres collab={collabData} />
     </div>
   );

@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
 import axios from "axios";
 
 function PopupDelete({id}) {
-  const deleteWorkspace = () => {};
+  const deleteWorkspace = () => {
+
+    axios
+      .delete(`http://localhost:80/api/v1/workspace/byid/${id}`)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     

@@ -1,10 +1,9 @@
-"use client";
 import React from "react";
 import PopupDelete from "./PopupDelete";
 function ShowWorkspaces({ workspace }: any) {
   const deleteWorkspace = (id: number) => {};
   const transferOwnership = (id: number) => {};
-
+  console.log(workspace[0]);
   return (
     <div className="mt-8">
       <div className="ml-10 text-2xl font-bold whitespace-nowrap">
@@ -28,6 +27,7 @@ function ShowWorkspaces({ workspace }: any) {
           </thead>
           <tbody>
             
+          {workspace.map((workspace: any) => (
               <tr
                 key={workspace.id}
                 className="border-b border-gray-300 hover:bg-gray-50 transition"
@@ -57,7 +57,7 @@ function ShowWorkspaces({ workspace }: any) {
                 <PopupDelete id ={workspace.id}/>
                 </td>
               </tr>
-       
+            ))}
           </tbody>
         </table>
       </div>

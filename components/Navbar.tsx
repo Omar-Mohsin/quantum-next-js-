@@ -4,6 +4,7 @@ import LogoMenu from "./LogoMenu";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { SelectUser } from "@/redux/auth/authSlice";
+import EmptyLogoMenu from "./EmptyLogoMen";
 function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const user = useSelector(SelectUser);
@@ -16,8 +17,10 @@ function Navbar() {
       <div className="h-20 flex justify-between items-center px-4 md:px-6 text-white">
        
         <div className="flex items-center">
-      
-        <LogoMenu />
+     {
+        user ? ( <LogoMenu />):(<EmptyLogoMenu />)
+     }
+       
           <Link href="/">
             <h1 className="text-lg md:text-2xl font-bold text-black">
               Scavenger
@@ -76,7 +79,7 @@ function Navbar() {
           ) : (
             <>
             <Link
-            href="/workspace-settings/1"
+            href="/workspace-settings/"
             className="block py-2 px-4 text-sm hover:bg-gray-700"
           >
             WorkSpace settings
