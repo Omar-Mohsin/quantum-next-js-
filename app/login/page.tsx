@@ -48,7 +48,7 @@ const user  = useSelector(SelectUser);
         
           });
           console.log(user);
-          router.push("/");
+          router.replace("/dashboard");
            
         } catch (error : any) {
       if (error.response && error.response.status === 400) {

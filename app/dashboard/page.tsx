@@ -2,10 +2,10 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { SelectUser } from "@/redux/auth/authSlice";
+import { workspace } from "@/types/types";
+import { getCookie } from "cookies-next";
 function page() {
-  const user = useSelector(SelectUser);
+  const token = getCookie("token");
 
   const router = useRouter();
   const [workspaces, setWorkspaces] = useState();
@@ -18,7 +18,7 @@ function page() {
     axios
       .get(`http://localhost:80/api/v1/workspace`, {
         headers: {
-          Authorization: `Bearer ${user?.access_token}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -28,7 +28,7 @@ function page() {
       .catch((error) => {
         console.log(error?.response.data);
       });
-  }, [user]);
+  }, [token]);
 
   return (
     <div>
@@ -40,7 +40,7 @@ function page() {
         <div className="flex flex-col justify-center items-center mt-20">
           <div className="flex flex-col justify-center items-center mt-20">
             <div className="flex flex-col justify-center items-center mt-20">
-              {workspaces?.map((workspace: any) => (
+              {workspaces?.map((workspace: workspace) => (
                 <div
                   key={workspace.id}
                   className="flex flex-col justify-center items-center mt-20"

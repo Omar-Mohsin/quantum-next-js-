@@ -2,15 +2,23 @@
 import React, { useState } from "react";
 import LogoMenu from "./LogoMenu";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { SelectUser } from "@/redux/auth/authSlice";
 import EmptyLogoMenu from "./EmptyLogoMen";
+import { getCookie } from "cookies-next";
 function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const user = useSelector(SelectUser);
+  // const[token,setToken] = useState("")
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
+  const user = getCookie("token");
+
+  // useEffect(() => {
+  //   const token = getCookie("token").valueOf() ?? "";
+  //   if(token) {
+  //  setToken(token);
+  //   }
+
+  // }, []);
 
   return (
     <>

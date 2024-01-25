@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Link from 'next/link'
-import UserInformation from './UserInformation'
+import UserInformation from '@/components/Profile/UserInformation'
 import { SelectUser  , removeUser} from '@/redux/auth/authSlice'
 import { useSelector , useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'

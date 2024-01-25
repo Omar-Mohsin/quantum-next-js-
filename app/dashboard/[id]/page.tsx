@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import {
   SelectUser,
 } from "@/redux/auth/authSlice";
-import { Campaign } from "@/types/types";
+import { campaign } from "@/types/types";
 
 
 
@@ -16,7 +16,7 @@ function Home({params} : any) {
   const router = useRouter();
 
   const {id} = params
-  const [myCampaign, setMyCampaign] = useState<Campaign[] | undefined>(
+  const [myCampaign, setMyCampaign] = useState<campaign[] | undefined>(
     undefined
   );
   const [workspaces, setWorkspaces] = useState();

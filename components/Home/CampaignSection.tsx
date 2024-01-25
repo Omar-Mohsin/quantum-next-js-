@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "next/link";
+import { campaign } from "@/types/types";
 function CampaignSection({ myCampaign }: any) {
   const [showAllCampaigns, setShowAllCampaigns] = useState(false);
 
@@ -24,7 +25,7 @@ function CampaignSection({ myCampaign }: any) {
         </div>
       </div>
       <div className="flex flex-col">
-        {filteredCampaign?.map((campaign: any) => (
+        {filteredCampaign?.map((campaign: campaign) => (
           <div
             className="mb-4 md:flex md:justify-between md:items-center mt-6 md:p-5"
             key={campaign?.id}
@@ -40,19 +41,23 @@ function CampaignSection({ myCampaign }: any) {
               <DeleteIcon className="ml-10 cursor-pointer" />
             </div>
             <Link href={`/campaign-settings/${campaign.id}`}>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
-              View Campaign
-            </button>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+                View Campaign
+              </button>
             </Link>
           </div>
         ))}
         <div className="mb-4 flex justify-center items-center mt-6 p-5">
-          <button
-            onClick={() => setShowAllCampaigns(!showAllCampaigns)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-          >
-            {showAllCampaigns ? "Show Less Campaigns" : "View All Campaigns"}
-          </button>
+          {myCampaign?.length !== 0 ? (
+            <button
+              onClick={() => setShowAllCampaigns(!showAllCampaigns)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+            >
+              {showAllCampaigns ? "Show Less Campaigns" : "View All Campaigns"}
+            </button>
+          ) : (
+            <>there is no campaign , create or import one</>
+          )}
         </div>
       </div>
     </div>

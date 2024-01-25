@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useRouter } from "next/navigation";
+import { workspace } from "@/types/types";
 function WorkspaceSection({ myworkspaces , id }: any) {
   const router = useRouter();
   console.log(myworkspaces);
@@ -15,7 +16,7 @@ function WorkspaceSection({ myworkspaces , id }: any) {
     <div className="w-full md:w-1/2 mt-4 md:mt-0">
       <h1 className="text-2xl md:text-3xl mb-4">Other Workspaces</h1>
 
-        {findWorkspaceById.map((workspace: any) => (
+        {findWorkspaceById.map((workspace: workspace) => (
         <div
           className="mb-4 flex flex-col md:flex-row justify-between items-center"
           key={myworkspaces.id}
